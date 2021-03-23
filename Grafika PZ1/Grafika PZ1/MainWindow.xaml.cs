@@ -23,6 +23,27 @@ namespace Grafika_PZ1
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+        }
+
+        private void EllipseButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RectangleButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PolygonButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ImageButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

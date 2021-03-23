@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grafika_PZ1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="600" Width="1000">
+    <DockPanel>
+        <Menu DockPanel.Dock ="Top">
+            <MenuItem Header="Ellipse" Click="EllipseButton_Click"/>
+            <MenuItem Header="Rectangle" Click="RectangleButton_Click"/>
+            <MenuItem Header="Polygon" Click="PolygonButton_Click"/>
+            <MenuItem Header="Image" Click="ImageButton_Click"/>
+            <MenuItem Header="Undo"/>
+            <MenuItem Header="Redo"/>
+            <MenuItem Header="Clear"/>
+        </Menu>
+        <Canvas DockPanel.Dock="Bottom" Name="PaintingCanvas">
+            
+        </Canvas>
+    </DockPanel>
 </Window>

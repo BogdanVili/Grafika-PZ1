@@ -14,7 +14,6 @@
     </Window.Resources>
 
     <Grid>
-        <Grid Margin="0,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -68,5 +67,4 @@
             <Button x:Name="CancelButton" Content="Cancel" Grid.Column="0" Grid.Row="5" Margin="15" Click="CancelButton_Click"></Button>
             <Button x:Name="DrawButton" Content="Draw" Grid.Column="1" Grid.Row="5" Margin="15" Click="DrawButton_Click"></Button>
         </Grid>
-    </Grid>
 </Window>

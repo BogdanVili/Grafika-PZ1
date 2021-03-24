@@ -16,7 +16,7 @@
             <MenuItem Header="Redo"/>
             <MenuItem Header="Clear"/>
         </Menu>
-        <Canvas Background="White" DockPanel.Dock="Bottom" Name="PaintingCanvas" MouseRightButtonUp="PaintingCanvas_MouseRightButtonUp">
+        <Canvas Background="White" DockPanel.Dock="Bottom" Name="PaintingCanvas" MouseLeftButtonUp="PaintingCanvas_MouseLeftButtonUp" MouseRightButtonUp="PaintingCanvas_MouseRightButtonUp">
             
         </Canvas>
     </DockPanel>

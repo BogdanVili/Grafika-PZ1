@@ -28,10 +28,30 @@ namespace Grafika_PZ1
             set { shapeSelection = value; }
         }
 
+        private List<Point> polygonPoints;
+
+        public List<Point> PolygonPoints
+        {
+            get { return polygonPoints; }
+            set { polygonPoints = value; }
+        }
+
+        private List<Line> polygonDots;
+
+        public List<Line> PolygonDots
+        {
+            get { return polygonDots; }
+            set { polygonDots = value; }
+        }
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             shapeSelection = "";
+            polygonPoints = new List<Point>();
+            polygonDots = new List<Line>();
             this.DataContext = this;
         }
 
@@ -61,6 +81,41 @@ namespace Grafika_PZ1
             {
                 ShapesSettings shapesSettings = new ShapesSettings(shapeSelection, PaintingCanvas, Mouse.GetPosition(PaintingCanvas));
                 shapesSettings.ShowDialog();
+                return;
+            }
+
+            if (shapeSelection == "Polygon")
+            {
+                Line dot = new Line();
+                dot.Stroke = System.Windows.Media.Brushes.Black;
+                dot.StrokeThickness = 1;
+
+                Point mousePoint = Mouse.GetPosition(PaintingCanvas);
+                dot.X1 = mousePoint.X;
+                dot.X2 = mousePoint.X + 2;
+                dot.Y1 = mousePoint.Y;
+                dot.Y2 = mousePoint.Y;
+
+                PaintingCanvas.Children.Add(dot);
+                polygonDots.Add(dot);
+
+                polygonPoints.Add(mousePoint);
+            }
+        }
+            
+        private void PaintingCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if(shapeSelection == "Polygon")
+            {
+                PolygonSettings polygonSettings = new PolygonSettings(PaintingCanvas, PolygonPoints);
+                polygonSettings.ShowDialog();
+      
+                foreach(Line dot in polygonDots)
+                {
+                    PaintingCanvas.Children.Remove(dot);
+                }
+                
+                return;
             }
         }
     }

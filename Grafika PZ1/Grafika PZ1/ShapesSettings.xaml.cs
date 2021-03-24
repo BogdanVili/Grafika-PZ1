@@ -54,7 +54,7 @@ namespace Grafika_PZ1
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void DrawButton_Click(object sender, RoutedEventArgs e)

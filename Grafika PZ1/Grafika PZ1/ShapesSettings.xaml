@@ -64,7 +64,7 @@
             <TextBlock Text="Border Thickness: " FontSize="20" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="15"/>
             <TextBox x:Name="BorderThicknessField" Grid.Row="4" Grid.Column="1" Margin="15"/>
 
-            <Button x:Name="CancelButton" Content="Cancel" Grid.Column="0" Grid.Row="5" Margin="15" Click="CancelButton_Click"></Button>
-            <Button x:Name="DrawButton" Content="Draw" Grid.Column="1" Grid.Row="5" Margin="15" Click="DrawButton_Click"></Button>
-        </Grid>
+        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="0" Grid.Row="5" Margin="15" Click="CancelButton_Click"/>
+        <Button x:Name="DrawButton" Content="Draw" Grid.Column="1" Grid.Row="5" Margin="15" Click="DrawButton_Click"/>
+    </Grid>
 </Window>

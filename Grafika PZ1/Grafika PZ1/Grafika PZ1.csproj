@@ -54,12 +54,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ImageSettings.xaml.cs">
+      <DependentUpon>ImageSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PolygonSettings.xaml.cs">
       <DependentUpon>PolygonSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShapesSettings.xaml.cs">
       <DependentUpon>ShapesSettings.xaml</DependentUpon>
     </Compile>
+    <Page Include="ImageSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

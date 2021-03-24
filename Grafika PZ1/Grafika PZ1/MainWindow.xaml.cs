@@ -57,22 +57,102 @@ namespace Grafika_PZ1
 
         private void EllipseButton_Click(object sender, RoutedEventArgs e)
         {
-            shapeSelection = "Ellipse";
+            if (shapeSelection == "")
+            {
+                shapeSelection = "Ellipse";
+                EllipseButton.Background = Brushes.LightBlue;
+            }
+            else
+            {
+                if (shapeSelection == "Ellipse")
+                {
+                    shapeSelection = "";
+                    EllipseButton.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    shapeSelection = "Ellipse";
+                    EllipseButton.Background = Brushes.LightBlue;
+                    RectangleButton.Background = Brushes.Transparent;
+                    PolygonButton.Background = Brushes.Transparent;
+                    ImageButton.Background = Brushes.Transparent;
+                }
+            }
         }
 
         private void RectangleButton_Click(object sender, RoutedEventArgs e)
         {
-            shapeSelection = "Rectangle";
+            if (shapeSelection == "")
+            {
+                shapeSelection = "Rectangle";
+                RectangleButton.Background = Brushes.LightBlue;
+            }
+            else
+            {
+                if(shapeSelection == "Rectangle")
+                {
+                    shapeSelection = "";
+                    RectangleButton.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    shapeSelection = "Rectangle";
+                    EllipseButton.Background = Brushes.Transparent;
+                    RectangleButton.Background = Brushes.LightBlue;
+                    PolygonButton.Background = Brushes.Transparent;
+                    ImageButton.Background = Brushes.Transparent;
+                }
+            }
         }
 
         private void PolygonButton_Click(object sender, RoutedEventArgs e)
         {
-            shapeSelection = "Polygon";
+            if (shapeSelection == "")
+            {
+                shapeSelection = "Polygon";
+                PolygonButton.Background = Brushes.LightBlue;
+            }
+            else
+            {
+                if (shapeSelection == "Polygon")
+                {
+                    shapeSelection = "";
+                    PolygonButton.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    shapeSelection = "Polygon";
+                    EllipseButton.Background = Brushes.Transparent;
+                    RectangleButton.Background = Brushes.Transparent;
+                    PolygonButton.Background = Brushes.LightBlue;
+                    ImageButton.Background = Brushes.Transparent;
+                }
+            }
         }
 
         private void ImageButton_Click(object sender, RoutedEventArgs e)
         {
-            shapeSelection = "Image";
+            if (shapeSelection == "")
+            {
+                shapeSelection = "Image";
+                ImageButton.Background = Brushes.LightBlue;
+            }
+            else
+            {
+                if (shapeSelection == "Image")
+                {
+                    shapeSelection = "";
+                    PolygonButton.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    shapeSelection = "Image";
+                    EllipseButton.Background = Brushes.Transparent;
+                    RectangleButton.Background = Brushes.Transparent;
+                    PolygonButton.Background = Brushes.Transparent;
+                    ImageButton.Background = Brushes.LightBlue;
+                }
+            }
         }
 
         private void PaintingCanvas_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -100,6 +180,13 @@ namespace Grafika_PZ1
                 polygonDots.Add(dot);
 
                 polygonPoints.Add(mousePoint);
+            }
+            
+            if(shapeSelection == "Image")
+            {
+                ImageSettings imageSettings = new ImageSettings(PaintingCanvas, Mouse.GetPosition(PaintingCanvas));
+                imageSettings.ShowDialog();
+                return;
             }
         }
             

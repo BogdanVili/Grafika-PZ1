@@ -8,13 +8,13 @@
         Title="MainWindow" Height="600" Width="1000">
     <DockPanel>
         <Menu DockPanel.Dock ="Top">
-            <MenuItem Header="Ellipse" Click="EllipseButton_Click"/>
-            <MenuItem Header="Rectangle" Click="RectangleButton_Click"/>
-            <MenuItem Header="Polygon" Click="PolygonButton_Click"/>
-            <MenuItem Header="Image" Click="ImageButton_Click"/>
-            <MenuItem Header="Undo"/>
-            <MenuItem Header="Redo"/>
-            <MenuItem Header="Clear"/>
+            <MenuItem x:Name="EllipseButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Ellipse" Click="EllipseButton_Click"/>
+            <MenuItem x:Name="RectangleButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Rectangle" Click="RectangleButton_Click"/>
+            <MenuItem x:Name="PolygonButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Polygon" Click="PolygonButton_Click"/>
+            <MenuItem x:Name="ImageButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Image" Click="ImageButton_Click"/>
+            <MenuItem x:Name="UndoButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Undo"/>
+            <MenuItem x:Name="RedoButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Redo"/>
+            <MenuItem x:Name="ClearButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Clear"/>
         </Menu>
         <Canvas Background="White" DockPanel.Dock="Bottom" Name="PaintingCanvas" MouseLeftButtonUp="PaintingCanvas_MouseLeftButtonUp" MouseRightButtonUp="PaintingCanvas_MouseRightButtonUp">
             

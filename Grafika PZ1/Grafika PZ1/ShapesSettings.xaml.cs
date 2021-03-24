@@ -122,23 +122,25 @@ namespace Grafika_PZ1
 
         private bool Validation()
         {
+            bool validate = true;
+
             if(WidthField.Text == string.Empty)
             {
                 WidthField.BorderBrush = new SolidColorBrush(Colors.Red);
-                return false;
+                validate = false;
             }    
             if(HeightField.Text == string.Empty)
             {
                 HeightField.BorderBrush = new SolidColorBrush(Colors.Red);
-                return false;
+                validate = false;
             }
             if(BorderThicknessField.Text == string.Empty)
             {
                 BorderThicknessField.BorderBrush = new SolidColorBrush(Colors.Red);
-                return false;
+                validate = false;
             }
 
-            return true;
+            return validate;
         }
     }
 }

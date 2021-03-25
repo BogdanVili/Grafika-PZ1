@@ -45,14 +45,43 @@ namespace Grafika_PZ1
             set { filename = value; }
         }
 
-        
+        private Image imageToDelete;
+
+        public Image ImageToDelete
+        {
+            get { return imageToDelete; }
+            set { imageToDelete = value; }
+        }
+
+        private bool editing;
+
+        public bool Editing
+        {
+            get { return editing; }
+            set { editing = value; }
+        }
+
 
         public ImageSettings(Canvas paintingCanvas, Point canvasLocation)
         {
             InitializeComponent();
             this.paintingCanvas = paintingCanvas;
             this.canvasLocation = canvasLocation;
-            filename = string.Empty;
+            this.filename = string.Empty;
+            this.editing = false;
+        }
+
+        public ImageSettings(Canvas paintingCanvas, Point canvasLocation, string width, string height, string filename, Image imageToDelete)
+        {
+            InitializeComponent();
+            this.paintingCanvas = paintingCanvas;
+            this.canvasLocation = canvasLocation;
+            WidthField.Text = width;
+            HeightField.Text = height;
+            FileNameTextBlock.Text = filename;
+            this.filename = filename;
+            this.imageToDelete = imageToDelete;
+            this.editing = true;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -72,9 +101,16 @@ namespace Grafika_PZ1
                     Stretch = Stretch.Fill
                 };
 
+                if(editing)
+                {
+                    paintingCanvas.Children.Remove(imageToDelete);
+                }   
+                
                 Canvas.SetLeft(image, canvasLocation.X);
                 Canvas.SetTop(image, canvasLocation.Y);
                 PaintingCanvas.Children.Add(image);
+
+                this.Close();
             }
         }
 

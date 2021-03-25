@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Fill Color: " FontSize="20" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="15"/>
-        <ComboBox Name="FillColorField" ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}" SelectedValuePath="Name" Grid.Row="0" Grid.Column="1" Margin="15" SelectedIndex="7">
+        <ComboBox Name="FillColorField" ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}" SelectedValuePath="Name" Grid.Row="0" Grid.Column="1" Margin="15">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="18" Margin="0,0,0,2">
@@ -38,7 +38,7 @@
         </ComboBox>
 
         <TextBlock Text="Border Color: " FontSize="20" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="15"/>
-        <ComboBox Name="BorderColorField" ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}" SelectedValuePath="Name" Grid.Row="1" Grid.Column="1" Margin="15" SelectedIndex="7" >
+        <ComboBox Name="BorderColorField" ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}" SelectedValuePath="Name" Grid.Row="1" Grid.Column="1" Margin="15">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="18" Margin="0,0,0,2">

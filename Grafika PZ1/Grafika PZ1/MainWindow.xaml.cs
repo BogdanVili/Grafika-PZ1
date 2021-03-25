@@ -44,6 +44,13 @@ namespace Grafika_PZ1
             set { polygonDots = value; }
         }
 
+        private List<UIElement> listOfElements;
+
+        public List<UIElement> ListOfElements
+        {
+            get { return listOfElements; }
+            set { listOfElements = value; }
+        }
 
 
         public MainWindow()
@@ -52,6 +59,7 @@ namespace Grafika_PZ1
             shapeSelection = "";
             polygonPoints = new List<Point>();
             polygonDots = new List<Line>();
+            listOfElements = new List<UIElement>();
             this.DataContext = this;
         }
 
@@ -118,6 +126,12 @@ namespace Grafika_PZ1
                 {
                     shapeSelection = "";
                     PolygonButton.Background = Brushes.Transparent;
+                    PolygonPoints.Clear();
+                    foreach (Line dot in PolygonDots)
+                    {
+                        PaintingCanvas.Children.Remove(dot);
+                    }
+                    polygonDots.Clear();
                 }
                 else
                 {
@@ -142,7 +156,7 @@ namespace Grafika_PZ1
                 if (shapeSelection == "Image")
                 {
                     shapeSelection = "";
-                    PolygonButton.Background = Brushes.Transparent;
+                    ImageButton.Background = Brushes.Transparent;
                 }
                 else
                 {
@@ -204,6 +218,106 @@ namespace Grafika_PZ1
                 
                 return;
             }
+
+            if(shapeSelection == "")
+            {
+                if(e.OriginalSource is Ellipse)
+                {
+                    Ellipse ellipse = (Ellipse)e.OriginalSource;
+
+                    Point position = ellipse.TranslatePoint(new Point(0, 0), PaintingCanvas);
+
+                    ShapesSettings shapesSettings = new ShapesSettings("Ellipse", PaintingCanvas, position,
+                                                                        ellipse.Width.ToString(),
+                                                                        ellipse.Height.ToString(),
+                                                                        ((SolidColorBrush)ellipse.Fill).Color,
+                                                                        ((SolidColorBrush)ellipse.Stroke).Color,
+                                                                        ellipse.StrokeThickness.ToString(),
+                                                                        ellipse, null);
+
+                    shapesSettings.ShowDialog();
+
+                    return;
+                }
+
+                if(e.OriginalSource is Rectangle)
+                {
+                    Rectangle rectangle = (Rectangle)e.OriginalSource;
+
+                    Point position = rectangle.TranslatePoint(new Point(0, 0), PaintingCanvas);
+
+                    ShapesSettings shapesSettings = new ShapesSettings("Rectangle", PaintingCanvas, position,
+                                                                        rectangle.Width.ToString(),
+                                                                        rectangle.Height.ToString(),
+                                                                        ((SolidColorBrush)rectangle.Fill).Color,
+                                                                        ((SolidColorBrush)rectangle.Stroke).Color,
+                                                                        rectangle.StrokeThickness.ToString(),
+                                                                        null, rectangle);
+
+                    shapesSettings.ShowDialog();
+
+                    return;
+                }
+
+                if(e.OriginalSource is Polygon)
+                {
+                    Polygon polygon = (Polygon)e.OriginalSource;
+
+                    PolygonSettings polygonSettings = new PolygonSettings(PaintingCanvas, polygon.Points.ToList(), ((SolidColorBrush)polygon.Fill).Color, ((SolidColorBrush)polygon.Stroke).Color, polygon);
+
+                    polygonSettings.ShowDialog();
+
+                    return;
+                }
+
+                if(e.OriginalSource is Image)
+                {
+                    Image image = (Image)e.OriginalSource;
+
+                    Point position = image.TranslatePoint(new Point(0, 0), PaintingCanvas);
+
+                    ImageSettings imageSettings = new ImageSettings(PaintingCanvas, position, image.Width.ToString(), image.Height.ToString(), image.Source.ToString(), image);
+
+                    imageSettings.ShowDialog();
+
+                    return;
+                }
+            }
+        }
+
+        private void UndoButton_Click(object sender, RoutedEventArgs e)
+        {
+            PolygonPoints.Clear();
+            foreach (Line dot in PolygonDots)
+            {
+                PaintingCanvas.Children.Remove(dot);
+            }
+            polygonDots.Clear();
+
+            if (PaintingCanvas.Children.Count != 0)
+            {
+                listOfElements.Add(PaintingCanvas.Children[PaintingCanvas.Children.Count - 1]);
+                PaintingCanvas.Children.Remove(PaintingCanvas.Children[PaintingCanvas.Children.Count - 1]);
+            }
+        }
+
+        private void RedoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (listOfElements.Count != 0)
+            {
+                PaintingCanvas.Children.Add(listOfElements.Last());
+                listOfElements.Remove(listOfElements.Last());
+            }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(UIElement element in PaintingCanvas.Children)
+            {
+                listOfElements.Add(element);
+            }
+
+            PaintingCanvas.Children.Clear();
         }
     }
 }

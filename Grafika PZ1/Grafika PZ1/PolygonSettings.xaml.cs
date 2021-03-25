@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,12 +36,71 @@ namespace Grafika_PZ1
             set { points = value; }
         }
 
+        private Polygon polygonToDelete;
+
+        public Polygon PolygonToDelete
+        {
+            get { return polygonToDelete; }
+            set { polygonToDelete = value; }
+        }
+
+        private bool editing;
+
+        public bool Editing
+        {
+            get { return editing; }
+            set { editing = value; }
+        }
+
 
         public PolygonSettings(Canvas paintingCanvas, List<Point> points)
         {
             InitializeComponent();
             this.paintingCanvas = paintingCanvas;
             this.points = points;
+            FillColorField.SelectedIndex = 7;
+            BorderColorField.SelectedIndex = 7;
+            this.editing = false;
+        }
+
+        public PolygonSettings(Canvas paintingCanvas, List<Point> points, Color fillColor, Color borderColor, Polygon polygonToDelete)
+        {
+            InitializeComponent();
+            this.paintingCanvas = paintingCanvas;
+            this.points = points;
+
+            PropertyInfo[] properties = typeof(Colors).GetProperties();
+
+            string fillColorName = GetColorName(fillColor);
+
+            for (int i = 0; i < properties.Length; i++)
+            {
+                if (properties[i].Name == fillColorName)
+                {
+                    FillColorField.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            string borderColorName = GetColorName(borderColor);
+
+            for (int i = 0; i < properties.Length; i++)
+            {
+                if (properties[i].Name == borderColorName)
+                {
+                    BorderColorField.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            this.polygonToDelete = polygonToDelete;
+            this.editing = true;
+        }
+
+        static string GetColorName(Color col)
+        {
+            PropertyInfo colorProperty = typeof(Colors).GetProperties().FirstOrDefault(p => Color.AreClose((Color)p.GetValue(null), col));
+            return colorProperty != null ? colorProperty.Name : "unnamed color";
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -70,6 +130,11 @@ namespace Grafika_PZ1
                 polygon.VerticalAlignment = VerticalAlignment.Center;
 
                 polygon.Points = new PointCollection(points);
+
+                if(editing)
+                {
+                    paintingCanvas.Children.Remove(polygonToDelete);
+                }
 
                 paintingCanvas.Children.Add(polygon);
 

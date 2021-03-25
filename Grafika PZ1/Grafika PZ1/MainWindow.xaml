@@ -12,9 +12,9 @@
             <MenuItem x:Name="RectangleButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Rectangle" Click="RectangleButton_Click"/>
             <MenuItem x:Name="PolygonButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Polygon" Click="PolygonButton_Click"/>
             <MenuItem x:Name="ImageButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Image" Click="ImageButton_Click"/>
-            <MenuItem x:Name="UndoButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Undo"/>
-            <MenuItem x:Name="RedoButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Redo"/>
-            <MenuItem x:Name="ClearButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Clear"/>
+            <MenuItem x:Name="UndoButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Undo" Click="UndoButton_Click"/>
+            <MenuItem x:Name="RedoButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Redo" Click="RedoButton_Click"/>
+            <MenuItem x:Name="ClearButton" BorderBrush="LightBlue" BorderThickness="2" Margin="5" FontSize="18" Header="Clear" Click="ClearButton_Click"/>
         </Menu>
         <Canvas Background="White" DockPanel.Dock="Bottom" Name="PaintingCanvas" MouseLeftButtonUp="PaintingCanvas_MouseLeftButtonUp" MouseRightButtonUp="PaintingCanvas_MouseRightButtonUp">
             
